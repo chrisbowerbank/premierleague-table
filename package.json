@@ -1,5 +1,5 @@
 {
-  "name": "hackerwall-solution",
+  "name": "slim",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,15 +9,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.15.2",
-    "express": "^4.14.0",
-    "express-handlebars": "^3.0.0",
-    "mongoose": "^4.6.3"
-  },
-  "devDependencies": {
-    "nodemon": "^1.11.0"
-  },
-  "engines": {
-  "node": "0.12.5"
+    "MD5": "^1.3.0",
+    "cheerio": "^0.22.0",
+    "node-microdata-scraper": "0.0.4",
+    "request": "^2.81.0",
+    "requirejs": "^2.3.3"
   }
 }

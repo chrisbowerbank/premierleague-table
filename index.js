@@ -1,57 +1,53 @@
-// All our requires/dependencies
-var express = require('express')
-var bodyParser = require('body-parser')
-var hbs = require('express-handlebars')
-var mongoose = require('mongoose')
-
-// Connect to our Mongo database, using Mongoose and include our models
-mongoose.connect('mongodb://localhost:27017/hackerwall-solution')
-
-//model
-var Schema = mongoose.Schema
-
-var rowSchema = new Schema({
-  position: Number,
-  teamName: String,
-  crestURI: String,
-  playedGames: String,
-  points: Number
-})
-
-var Row = mongoose.model( 'index', rowSchema )
+console.log( 'api is working' )
 
 
 
-// Creating our Application
-var app = express()
+var ajaxRequest = new XMLHttpRequest()
+ajaxRequest.open('GET', 'http://api.football-data.org/v1/competitions/426/leagueTable/' )
 
-// Registering and use our template engine (handlebars)
-app.engine('handlebars', hbs({defaultLayout: 'main'}))
-app.set('view engine', 'handlebars')
+ajaxRequest.setRequestHeader('X-Auth-Token', 'b0c29a787e514f08a36e696f73765559')
 
-// Serving static files (like css)
-app.use(express.static('public'))
+ajaxRequest.onreadystatechange = function( ){
 
-// Use Body Parser
-app.use(bodyParser.urlencoded({extended: true}))
+  var done = 4
+  var ok = 200
 
-var data
-// Routes
-// application routes (i.e. controller)
-app.get('/', function( req , res ) {
-  // index route
-  // list every article
+  if ( ajaxRequest.readyState === done && ajaxRequest.status === ok ) {
+    var responseData = JSON.parse( ajaxRequest.responseText )
 
-    Row.find({}, function( err, row ){
-      res.render('index', { row: row })
-    })
+    var teamName1 = document.getElementsByClassName('teamName1')
+    teamName1.innerHTML = responseData.standing[0].teamName
+    // document.querySelector('.test').innerHTML( responseData.standing[0].teamName )
 
-})
+    console.log( responseData )
+
+    console.log('hi')
+
+    console.log( responseData.standing[0].teamName )
+
+    console.log( teamName1.innerHTML )
+
+    console.log( teamName1 )
+
+  }
+}
+
+var newTable = document.querySelector('table1')
+
+// newTable.addEventListener('click',function( event ){
+//
+//       event.preventDefault()
+//
+//   for ( var e = 0 ; e < 20 ; e++ ){
+//       var newRow = document.createElement( 'tr' )
+//   }
 
 
+  // var newElement = document.createElement('td')
 
-app.listen( 3000, function() {
 
-  console.log( 'listening on 3000' )
+//
+// })
 
-})
+
+ajaxRequest.send(null)
