@@ -1,7 +1,10 @@
 # premierleague-table
 open source premier league table
 
+link to project: does not exist
+
 I'm still working on getting the API data into my server and then into my table every time the page loads.
+
 
 
 *What did I learn?*
